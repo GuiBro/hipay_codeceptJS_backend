@@ -13,7 +13,7 @@ exports.config = {
         defaultHeaders: {
           'Authorization': 'Basic ' + Buffer.from('login:password').toString('base64'),
           'Content-Type': 'application/json',
-          'accept': 'application/json'
+          'Accept': 'application/json',
         }
       },
       JSONResponse: {}

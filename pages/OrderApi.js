@@ -26,6 +26,6 @@ module.exports = {
   },
 
   async sendOrder(data, headers = {}) {
-    return await I.sendPostRequest(this.url, data, headers)
+    return await I.sendPostRequest(this.endpoint, data, headers)
   },
 };

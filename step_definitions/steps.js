@@ -9,14 +9,15 @@ Given('I have valid mandatory payment data', () => {
 Given('I have payment data without an order_id', () => {
   payload = orderApiPage.getMandatoryDataOnly();
   delete payload.order.order_id;
+  header = {}
 });
 
 Given('I am not authenticated', () => {
   header = {'Authorization': ''};
 });
 
-When('I send a POST request to create an order', () => {
-  orderApiPage.sendOrder(payload, header);
+When('I send a POST request to create an order', async () => {
+  await orderApiPage.sendOrder(payload, header);
 });
 
 Then('the response status code should be {int}', (statusCode) => {
