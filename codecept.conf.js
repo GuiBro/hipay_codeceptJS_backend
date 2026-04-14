@@ -7,11 +7,11 @@ exports.config = {
       show: true,
     },
     REST: {
-        endpoint: 'https://cloudrun-api-yugcnet4yq-ew.a.run.app/',
+        endpoint: 'https://cloudrun-api-yugcnet4yq-ew.a.run.app',
         prettyPrintJson: true,
         timeout: 10000,
         defaultHeaders: {
-          'Authorization': 'basic ' + Buffer.from('login:password').toString('base64'),
+          'Authorization': 'Basic ' + Buffer.from('login:password').toString('base64'),
           'Content-Type': 'application/json',
           'accept': 'application/json'
         }

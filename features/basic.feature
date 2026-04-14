@@ -3,7 +3,7 @@ Feature: API Order Validation
   I want to verify the Order API behavior
   To ensure payments are correctly processed or rejected
 
-  @smoke @success
+  @success
   Scenario: Create a payment request with mandatory information
     Given I have valid mandatory payment data
     When I send a POST request to create an order

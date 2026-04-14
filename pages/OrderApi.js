@@ -28,8 +28,4 @@ module.exports = {
   async sendOrder(data, headers = {}) {
     return await I.sendPostRequest(this.url, data, headers)
   },
-
-  async sendCreatePost(data) {
-    return await I.sendPostRequest(this.url, data);
-  }
 };
