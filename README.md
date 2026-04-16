@@ -43,11 +43,13 @@ Page Object Model (POM) : J'ai centralisé la logique technique (URL, headers, c
 Utilisation de tags : permet de nommer et cibler certains scénario pour tester indépendemment. Tags à ajouter au dessus de chacun d'eux (@success, @error, etc)
 
 ### B. Sélection des scénarios automatisés  
-Pour ce test technique, j'ai sélectionné et mis en œuvre les scénarios les plus critiques et représentatifs de la robustesse du connecteur :
+Pour ce test technique, j'ai sélectionné quatres scénarios représentatifs des tests API :
 
-* **Scénario de succès (@success) :** Valide l'envoi d'une commande avec les champs obligatoires. A savoir qu'il est nécessaire d'avoir des identifiants (login:password) à encoder en base64.
-* **Scénario d'erreur de format (@error) :** Vérifie que l'API rejette les requêtes sans `order_id` (400).
-* **Scénario de sécurité (@security) :** Vérifie le rejet des accès non authentifiés (401).
+* **Scénarios de succès (@success) :** Valide l'envoi d'une commande nominale. J'y ai constitué deux cas de test pour faire varier certaines valeurs
+* **Scénario d'erreur de format (@error_badrequest) :** Vérifie que l'API rejette les requêtes sans `order_id` (400).
+* **Scénario de sécurité (@security_notauthenticated) :** Vérifie le rejet des accès non authentifiés (401).
+
+> **Note technique :** Par défaut, les tests retournent une **401 Unauthorized** car ils utilisent des identifiants de test (`login:password`) à encoder en base64. Tous les scénarios terminent donc en FAIL, sauf le dernier qui attend une erreur 401.
 
 ### C. Reporting  
 
@@ -55,8 +57,6 @@ Allure Reporting : Mise en place d'un rapport visuel détaillé. Chaque exécuti
 
 Qualité logicielle : Intégration d'un Linter (ESLint) pour assurer la propreté du code.
 
-
-> **Note technique :** Par défaut, les tests retournent une **401 Unauthorized** car ils utilisent des identifiants de test (`login:password`). Le framework est configuré pour supporter le **Basic Auth** dès que des clés privées valides sont fournies.
 
 ### Architecture du projet
 
