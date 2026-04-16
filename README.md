@@ -27,7 +27,7 @@ Rate Limiting : Intégrer la mise en place d'un mécanisme de limitation du nomb
 
 Blacklisting : Créer un persona qui soit interdit d'utiliser l'API (ex: via l'order_id), afin de tester l'efficacité du filtrage (403 forbidden).
 
-Exposition de données sensibles : S'assurer qu'en cas d'erreur 500, l'API ne renvoie pas de traces de code ou d'informations sur l'infrastructure interne dans le corps de la réponse.
+Stack trace : S'assurer qu'en cas d'erreur 500, l'API ne renvoie pas de données sensibles sur l'infrastructure interne dans le corps de la réponse.
 
 Test du timeout : Vérifier que l'API renvoie bien une erreur serveur au bout de 10 secondes entre l'appel et la réponse (504 Gateway Timeout). Difficile à automatiser, car nécessité de préparer une API custom.
 
@@ -37,6 +37,8 @@ L'architecture du code doit reposer sur la création d'un framework pérenne, ca
 
 ### A. Choix technologiques et méthodologiques  
 Utilisation de Gherkin : Cette approche permet de transformer des exigences métier en tests exécutables. Elle facilite la relecture par des profils non-techniques (PO, BA, etc) tout en servant de documentation.
+
+Variabilisation des jeux de données : l'approche "Scenario Outline" dans Gherkin permet de faire varier les JDD tout en restant très lisible
 
 Page Object Model (POM) : J'ai centralisé la logique technique (URL, headers, construction des payloads) dans une classe dédiée (OrderApi.js). Le modèle Objet garantit que si l'API évolue (ex: changement d'endpoint), la maintenance ne se fait qu'à un seul endroit, sans impacter les scénarios de tests.
 
@@ -55,7 +57,7 @@ Pour ce test technique, j'ai sélectionné quatres scénarios représentatifs de
 
 Allure Reporting : Mise en place d'un rapport visuel détaillé. Chaque exécution génère un historique complet incluant les requêtes JSON envoyées et les réponses reçues.
 
-Qualité logicielle : Intégration d'un Linter (ESLint) pour assurer la propreté du code.
+Qualité logicielle : Intégration d'un Linter (ESLint V9) pour assurer la propreté du code.
 
 
 ### Architecture du projet
@@ -88,5 +90,5 @@ npm run test
 * **HTML Report :** Un rapport statique est généré après chaque test dans le dossier `output/report.html`.
 * **Allure Report :** Pour une analyse détaillée (avec les détails des requêtes/réponses JSON), utilisez
 ```bash
-npm run report
+allure serve allure-results
 ```

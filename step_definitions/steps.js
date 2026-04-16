@@ -7,13 +7,13 @@ Given('I have a payment data with price {float} and product {string}', (price, p
   const data = orderApiPage.createOrderData(price, product);
   payload = data.request;
   currentExpectations = data.expect;
-})
+});
 
 Given('I have payment data without an order_id', () => {
   const data = orderApiPage.createOrderData();
   payload = data.request;
   delete payload.order.order_id;
-  header = {}
+  header = {};
 });
 
 Given('I have valid mandatory payment data', () => {
@@ -35,4 +35,4 @@ Then('the response status code should be {int}', (statusCode) => {
 
 Then('the response should match with expected order details', async () => {
   I.seeResponseContainsJson(currentExpectations);
-})
+});
